@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Leauge Of Legends - Tournament</title>
+  <style>
+    /* Genel stiller */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body, html {
+      width: 100%;
+      height: 100%;
+      font-family: 'Poppins', Arial, sans-serif;
+      background-color: #000;
+      color: #FFD700;
+      overflow: hidden;
+    }
+
+    /* Fotoğraf Arka Planı */
+    .photo-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+
+    .photo-bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(0.7);
+    }
+
+    /* Bakım Mesajı ve Animasyonlu Text */
+    .overlay {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      text-align: center;
+    }
+
+    .overlay h1 {
+      font-size: 4rem;
+      color: #FFD700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .overlay h2 {
+      font-size: 2rem;
+      margin: 20px 0;
+      color: #FFF;
+    }
+
+    .animated-word {
+      font-size: 2.5rem;
+      font-weight: bold;
+      color: #FFD700;
+      display: inline-block;
+      animation: fadeInOut 3s infinite;
+    }
+
+    @keyframes fadeInOut {
+      0% {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      25% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      75% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      100% {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+    }
+
+    /* Yükleme Çemberi */
+    .loader {
+      border: 8px solid #FFF;
+      border-top: 8px solid #FFD700;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      animation: spin 1s linear infinite;
+      margin-top: 20px;
+    }
+
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* Mobil Uyumu */
+    @media (max-width: 768px) {
+      .overlay h1 {
+        font-size: 3rem;
+      }
+
+      .overlay h2 {
+        font-size: 2rem;
+      }
+    }
+  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Fotoğraf Arka Planı -->
+  <div class="photo-bg">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcScm8q8W8HYr_eBZ_ao8bs4NmMciH2PrihNjKnfcdchxT2kVGA3YKXV22A&s=10" alt="Hakkımızda Görseli">
+  </div>
+
+  <!-- Bakım Mesajı -->
+  <div class="overlay">
+    <h1>LEAUGE OF LEGENDS</h1>
+    <h2 class="animated-word" id="animated-word"></h2>
+    <h2>Şu An Hâlâ Bakımdayız</h2>
+    <h2>Takipte Kalın!</h2>
+    <div class="loader"></div>
+  </div>
+
+  <script>
+    // Animasyonlu kelimeler
+    const words = ['E-SPOR', 'OYUNCULARININ', 'TEK ADRESİ'];
+    let currentIndex = 0;
+    const wordElement = document.getElementById('animated-word');
+
+    function updateWord() {
+      wordElement.textContent = words[currentIndex];
+      currentIndex = (currentIndex + 1) % words.length;
+    }
+
+    setInterval(updateWord, 3000);
+    updateWord();
+  </script>
+</body>
+</html>

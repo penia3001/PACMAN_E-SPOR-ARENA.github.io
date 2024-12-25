@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hakkımızda | Modern Web Sayfası</title>
+  <style>
+    /* Genel stiller */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #000;
+      color: #fff;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    /* Başlık Bölümü */
+    .header {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background-color: #000;
+      color: #FFD700;
+      padding: 20px;
+      position: relative;
+    }
+
+    .header-logo {
+      max-width: 150px;
+    }
+
+    .header-info {
+      text-align: center;
+      margin-top: 10px;
+    }
+
+    .header-text {
+      font-size: 2em;
+      margin: 5px 0;
+      color: #FFD700;
+    }
+
+    .header-subtext {
+      font-size: 1.2em;
+      color: #FFD700;
+    }
+
+    /* Menü simgesi */
+    .menu-icon {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      cursor: pointer;
+      background-color: #FFD700;
+      border-radius: 4px;
+      padding: 10px;
+      font-size: 1.2em;
+      color: #000;
+    }
+
+    /* Menü açılır pencere */
+    .menu {
+      position: fixed;
+      top: 0;
+      left: -100%;
+      width: 33%;
+      height: 100%;
+      background-color: #222;
+      color: #FFD700;
+      padding: 20px;
+      transition: left 0.3s ease;
+      z-index: 1000;
+    }
+
+    .menu.active {
+      left: 0;
+    }
+
+    .menu ul {
+      list-style: none;
+    }
+
+    .menu li {
+      margin-bottom: 20px;
+      font-size: 1.2em;
+    }
+
+    /* Hakkımızda Bölümü */
+    .about-section {
+      padding: 50px 20px;
+      text-align: center;
+      background-color: #222;
+    }
+
+    .about-section h2 {
+      font-size: 2.5em;
+      color: #FFD700;
+      margin-bottom: 20px;
+    }
+
+    .about-section p {
+      font-size: 1.2em;
+      color: #FFD700;
+      margin-bottom: 30px;
+      line-height: 1.6;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .about-section img {
+      width: 100%;         /* Fotoğrafın genişliğini tam olarak ekrana yay */
+      max-height: 500px;        /* Yüksekliği otomatik olarak ayarla */
+      object-fit: cover;
+      margin: 30px auto;   /* Üstten boşluk ve yatayda ortalama */
+      margin: 30px auto;
+      display: block;      /* Blok seviyesinde bir öğe haline getirerek, margin auto ile ortalanmasını sağlarız */
+      border-radius: 10px; /* Yumuşatılmış köşeler */
+      box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.5); /* Görsele gölge ekleyerek daha dikkat çekici hale getirebiliriz */
+    }
+
+    /* Vizyon ve Misyon */
+    .vision-mission {
+      background-color: #333;
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    .vision-mission h3 {
+      font-size: 2em;
+      color: #FFD700;
+      margin-bottom: 20px;
+    }
+
+    .vision-mission p {
+      font-size: 1.1em;
+      color: #FFD700;
+      line-height: 1.6;
+      margin-bottom: 20px;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* İletişim Bilgileri */
+    .contact-section {
+      background-color: #333;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .contact-item {
+      margin-bottom: 20px;
+    }
+
+    .contact-item img {
+      max-width: 50px;
+      height: auto;
+    }
+
+    .contact-text {
+      font-size: 1.1em;
+      color: #FFD700;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Başlık Bölümü -->
+  <header class="header">
+    <div class="menu-icon" id="menu-icon">☰</div>
+    <img src="https://i.hizliresim.com/2yuybqh.jpg" alt="Denizde Bir Hafta" class="header-logo">
+    <div class="header-info">
+      <h1 class="header-text">Hakkımızda</h1>
+      <p class="header-subtext">Yıllardır Sektörde Lideriz</p>
+    </div>
+  </header>
+
+  <!-- Menü Penceresi -->
+  <nav class="menu" id="menu">
+    <ul>
+      <li><a href="https://www.orneksite.com" style="color: #FFD700; text-decoration: none;">Ana Sayfa</a></li>
+      <li><a href="https://www.orneksite.com/hakkimizda.html" style="color: #FFD700; text-decoration: none;">Hakkımızda</a></li>
+      <li><a href="https://www.orneksite.com/iletisim.html" style="color: #FFD700; text-decoration: none;">İletişim</a></li>
+      <li><a href="https://www.orneksite.com/haberler.html" style="color: #FFD700; text-decoration: none;">Haberler</a></li>
+      <li><a href="https://www.orneksite.com/joyx-oyuncu-koltuklari.html" style="color: #FFD700; text-decoration: none;">Joyx Oyuncu Koltukları</a></li>
+    </ul>
+  </nav>
+
+  <!-- Hakkımızda Bölümü -->
+  <section class="about-section" id="about">
+    <h2>Hakkımızda</h2>
+    <p>25 yıl boyunca sektöründe lider konumda olan firmamız, her zaman yenilikçi ve kaliteli hizmet anlayışı ile sektöre yön vermektedir. Müşterilerimizin beklentilerine en yüksek standartlarda cevap vererek, uzun vadeli ve sağlam iş ilişkileri kurmayı hedefliyoruz. Amacımız, her zaman müşteri memnuniyetini ön planda tutarak, onların ihtiyaçlarına uygun çözümler sunmaktır.</p>
+    <img src="https://i.hizliresim.com/6nbj1mj.jpg" alt="Hakkımızda Görseli">
+    <img src="https://i.hizliresim.com/6nbj1mj.jpg" alt="Hakkımızda Görseli">
+  </section>
+
+  <!-- Vizyon ve Misyon -->
+  <section class="vision-mission">
+    <h3>Vizyonumuz</h3>
+    <p>Vizyonumuz, sektördeki liderliğimizi sürdürmek ve her geçen gün daha fazla müşteri kitlesine ulaşarak, global bir marka haline gelmektir. Yenilikçi teknolojiler ve sürdürülebilir çözümler ile geleceğe sağlam adımlarla ilerlemekteyiz.</p>
+    
+    <h3>Misyonumuz</h3>
+    <p>Misyonumuz, kaliteli ürünler ve müşteri odaklı hizmet anlayışımızla sektördeki güvenilirliğimizi pekiştirmektir. Sürekli gelişim ve mükemmeliyet ilkesi doğrultusunda her zaman daha iyisini sunmak için çalışıyoruz.</p>
+  </section>
+
+  <script>
+    // Menü simgesine tıklama işlevi
+    const menuIcon = document.getElementById('menu-icon');
+    const menu = document.getElementById('menu');
+
+    menuIcon.addEventListener('click', () => {
+      menu.classList.toggle('active');
+    });
+
+    // Menü dışında bir yere tıklayınca menüyü kapatmak
+    document.addEventListener('click', (e) => {
+      if (!menu.contains(e.target) && e.target !== menuIcon) {
+        menu.classList.remove('active');
+      }
+    });
+  </script>
+</body>
+</html>

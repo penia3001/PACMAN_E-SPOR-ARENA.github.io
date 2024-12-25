@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PACMAN E-SPOR ARENA |  JoyX Oyuncu Koltukları</title>
+  <style>
+    /* Genel stiller */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #100E09;
+      align-items: center;
+      color: #fff;
+      height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Menü */
+    .menu {
+      position: fixed;
+      top: 0;
+      left: -100%; /* Başlangıçta gizli */
+      width: 33%;
+      height: 100%;
+      background-color: #222; /* Koyu arka plan */
+      color: #FFD700;
+      padding: 20px;
+      transition: left 0.3s ease; /* Animasyon */
+      z-index: 1000;
+    }
+    /* Menü içindeki bağlantılar */
+    .menu a {
+      color: #FFD700; /* Sarı renk */
+      text-decoration: none; /* Alt çizgiyi kaldır */
+    }
+    .menu a:hover {
+      color: #fff; /* Hover (fare üzerine geldiğinde) rengi beyaz */
+    }
+  
+    .menu.active {
+      left: 0; /* Menü görünür */
+    }
+
+    .menu ul {
+      list-style: none;
+    }
+
+    .menu li {
+      margin-bottom: 20px;
+      font-size: 1.2em;
+    }
+
+    /* Menü simgesi */
+    .menu-button {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      cursor: pointer;
+      background-color: #FFD700; /* Sarı renk */
+      border-radius: 4px;
+      padding: 10px;
+      font-size: 1.2em;
+      color: #000; /* Siyah renk */
+      border: none;
+      z-index: 1001;
+    }
+
+    /* Başlık Bölümü */
+    .header {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      background-color: #100E09;
+      color: #FFD700;
+      padding: 1px 5px;
+      position: relative;
+    }
+
+    .line-logo-wrapper {
+      display: flex;
+      align-items: center;
+      background-color: #100E09;
+      justify-content: center;
+      margin-bottom: 0.1px;
+    }
+
+    .line {
+      width: 250px;
+      height: 250px;
+      background-color: #100E09;
+    }
+
+    .logo-container {
+      width: 250px;
+      height: 250px;
+      background-color: #100E09;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .logo-container img {
+      width: 200px;
+      height: 200px;
+      background-color: #100E09;
+      object-fit: contain;
+    }
+
+    .header-text {
+      font-size: 1.8em;
+      margin: 30px 0;
+      text-transform: uppercase;
+      font-weight: bold;
+      background-color: #100E09;
+    }
+
+    .header-subtext {
+      font-size: 1.8em;
+      color: #ccc;
+      background-color: #100E09;
+    }
+
+    /* Video Bölümü */
+    .video-section {
+      position: relative;
+      width: 100%;
+      height: 100px;
+      overflow: hidden;
+    }
+
+    .video-section {
+      position: relative;
+      width: 100%;
+      padding-top: 100%;
+      height: 0;
+      overflow: hidden;
+    }
+
+    .video-section iframe {
+      position: absolute;
+      top: -18%;
+      left: 0;
+      width: 100%;
+      height: 185%;
+      border: none;
+      border-radius: 25px;
+    }
+
+    /* Ürünler Bölümü */
+    .products-section {
+      padding: 5px 5px;
+      background-color: #100E09;
+      text-align: center;
+    }
+
+    .products-section h2 {
+      font-size: 3em;
+      color: #111;
+      margin-bottom: 5px;
+      font-weight: 800;
+    }
+
+    .product-cards {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 100px;
+    }
+
+    .product-card {
+      background-color: #100E09;
+      width: 500px;
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.6);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+
+    .product-card:hover {
+      transform: scale(1);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.8);
+    }
+
+    .product-card h3 {
+      font-size: 1.8em;
+      margin-bottom: 5px;
+      color: #FFD700;
+    }
+
+    .product-card p {
+      font-size: 1em;
+      color: #ddd;
+    }
+
+    .product-card .price {
+      font-size: 1.5em;
+      font-weight: bold;
+      margin-top: 15px;
+      color: #FFa000;
+    }
+
+    /* Footer */
+    footer {
+      background: #111;
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9em;
+      color: #666;
+    }
+
+    footer a {
+      color: #FFD700;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    footer a:hover {
+      color: #fff;
+    }
+
+    /* Logoyu Üste Taşıma */
+    img {
+      max-width: 100%;
+      height: auto;
+      margin-top: -80px;  /* Buradaki değeri artırarak logoyu daha yukarı taşıyabilirsiniz */
+    }
+    
+    /* Mobil Uyumluluk */
+    @media (max-width: 768px) {
+      .header-text {
+        font-size: 1.5em;
+      }
+
+      .header-subtext {
+        font-size: 1.2em;
+      }
+
+      .product-cards {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .product-card {
+        width: 90%;
+        margin-bottom: 20px;
+      }
+
+      .video-section iframe {
+        height: 200%;
+        top: -25%;
+      }
+
+      .line-logo-wrapper {
+        flex-direction: column;
+        margin-bottom: 25px;
+      }
+
+      .line {
+        width: 20px;
+        height: 20px;
+      }
+
+      .logo-container {
+        width: 100px;
+        height: 100px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Menü Butonu -->
+  <button class="menu-button" onclick="toggleMenu()">&#9776;</button>
+
+  <!-- Menü -->
+  <div class="menu" id="menu">
+  <ul>
+    <li><a href="index.html" style="color: #FFD700; text-decoration: none;">Ana Sayfa</a></li>
+    <li><a href="JoyX.html" style="color: #FFD700; text-decoration: none;">Ürünler</a></li>
+    <li><a href="hakkimizda.html" style="color: #FFD700; text-decoration: none;">Hakkımızda</a></li>
+    <li><a href="iletisim.html" style="color: #FFD700; text-decoration: none;">İletişim</a></li>
+  </ul>
+</div>
+
+  <!-- Başlık Bölümü -->
+  <header class="header">
+    <div class="line-logo-wrapper">
+      <div class="line"></div>
+      <div class="logo-container">
+        <img src="https://i.hizliresim.com/1jeupfc.png" alt="Logo">
+      </div>
+      <div class="line"></div>
+    </div>
+    <h1 class="header-text">JoyX Oyuncu Koltukları</h1>
+    <p class="header-subtext">Zarafet, Konfor ve Performansı Keşfedin</p>
+  </header>
+
+  <!-- Video Bölümü -->
+  <div class="video-section">
+    <iframe src="https://streamable.com/e/7216qn?autoplay=1&nocontrols=1" allowfullscreen></iframe>
+  </div>
+
+  <!-- Ürünler Bölümü -->
+  <section class="products-section">
+    <h2>Ürünlerimiz</h2>
+    <div class="product-cards">
+      <div class="product-card">
+        <img src="https://i.hizliresim.com/3g9aajh.jpg" alt="Ürün 1">
+        <h3>JoyX Tulga Koltuk</h3>
+        <p>Ergonomik tasarım ve yüksek kalite.</p>
+        <p class="price">₺14,500</p>
+      </div>
+      <div class="product-card">
+        <img src="https://i.hizliresim.com/sr0ynmk.jpg" alt="Ürün 2">
+        <h3>JoyX Venüs Koltuk</h3>
+        <p>Konforu zirveye taşıyan özel tasarım.</p>
+        <p class="price">₺20,200</p>
+      </div>
+      <div class="product-card">
+        <img src="https://i.hizliresim.com/kb4dc7j.jpg" alt="Ürün 3">
+        <h3>JoyX Atlas Koltuk</h3>
+        <p>Profesyonel oyuncular için mükemmel destek.</p>
+        <p class="price">₺18,800</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    © 2024 JoyX Oyuncu Koltukları. <a href="#">Tüm Hakları Saklıdır</a>.
+  </footer>
+
+  <script>
+    // Menü açma ve kapama fonksiyonu
+    function toggleMenu() {
+      const menu = document.getElementById('menu');
+      menu.classList.toggle('active');
+    }
+
+    // Menü dışına tıklayınca menüyü kapatma
+    window.addEventListener('click', function(event) {
+      const menu = document.getElementById('menu');
+      const menuButton = document.querySelector('.menu-button');
+      
+      if (!menu.contains(event.target) && !menuButton.contains(event.target)) {
+        menu.classList.remove('active');
+      }
+    });
+  </script>
+</body>
+</html>
